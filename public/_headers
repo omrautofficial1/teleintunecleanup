@@ -1,0 +1,14 @@
+# Security fix (Phase 1 audit, finding #3).
+# Hosting-layer headers — read by Netlify and Cloudflare Pages automatically.
+# If Telestar hosts this on Azure Static Web Apps instead, the equivalent
+# lives in staticwebapp.config.json's "globalHeaders" — ask before adding
+# one, since it's an extra config file outside this list.
+#
+# frame-ancestors / X-Frame-Options cannot be set via an HTML meta tag,
+# only as a real HTTP header, which is why this file exists alongside the
+# CSP meta tag in index.html.
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
