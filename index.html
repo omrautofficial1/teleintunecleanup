@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Security fix (Phase 1 audit, finding #3): baseline CSP. This app has
+         no backend, so a script-injection bug is the realistic attack path
+         to the sessionStorage-held Graph token; this is the primary control
+         against that. A meta CSP can't set frame-ancestors/X-Frame-Options —
+         set those at the hosting layer too (see public/_headers). -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self' https://graph.microsoft.com https://login.microsoftonline.com; frame-src https://login.microsoftonline.com; base-uri 'none'; form-action 'none'; object-src 'none';" />
+    <link rel="icon" type="image/svg+xml" href="/telestar-icon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Intune Device Cleanup — Telestar</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
